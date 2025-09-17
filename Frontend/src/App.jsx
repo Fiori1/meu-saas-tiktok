@@ -99,7 +99,7 @@ function TelaReceita({ receita, onCopy, onNovo, copiado }) {
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-2xl font-bold">{t('recipe_title')}</h2>
         <div className="flex gap-2">
-          <button onClick={onCopy} disabled={copiado} className={`rounded-xl px-4 py-2 text-sm font-medium transition ${ copiado ? 'bg-green-600 text-white cursor-not-allowed' : 'border border-neutral-300 bg-white hover:shadow-md'}`}>
+          <button onClick={onCopy} disabled={copiado} className={`rounded-xl px-4 py-2 text-sm font-medium transition ${copiado ? 'bg-green-600 text-white cursor-not-allowed' : 'border border-neutral-300 bg-white hover:shadow-md'}`}>
             {copiado ? t('copied_button') : t('copy_button')}
           </button>
           <button onClick={onNovo} className="rounded-xl bg-neutral-900 text-white px-4 py-2 text-sm">
@@ -147,6 +147,8 @@ export default function App() {
   const [receita, setReceita] = useState(null);
   const { i18n } = useTranslation();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   function reset() {
     setViralTopic("");
     setModelUrl("");
@@ -161,7 +163,7 @@ export default function App() {
     const inputs = contexto === 'viral' ? { viralTopic, modelUrl } : { produto, dor, beneficios };
     try {
       setIsLoading(true);
-      const response = await fetch('http://localhost:3001/api/gerar-receita', {
+      const response = await fetch(`${API_URL}/api/gerar-receita`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contexto, inputs, language: i18n.language }),
@@ -212,4 +214,4 @@ export default function App() {
       </footer>
     </div>
   );
-}  
+}
