@@ -209,8 +209,7 @@ export default function App() {
         )}
       </main>
       <footer className="mx-auto max-w-5xl px-4 pb-8 text-xs text-neutral-500">
-        Foco na simplicidade. Valide o fluxo antes de polir o design.
       </footer>
     </div>
   );
-}
+}  
