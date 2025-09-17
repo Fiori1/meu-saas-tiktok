@@ -1,0 +1,3 @@
+# Arquivos de segredos e dependências
+.env
+node_modules/
